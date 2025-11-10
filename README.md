@@ -74,3 +74,8 @@ Key features include:
       python LoanDefaultPrediction.py
 ```
 
+## Notes
+
+- This project is a **classification task** using a **neural network**
+- The dataset contains pre-engineered features for simplicity and reproducibility
+- Model evaluation emphasizes proper understanding of **classification metrics** and predictive performance
