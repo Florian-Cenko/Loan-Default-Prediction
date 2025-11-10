@@ -47,3 +47,30 @@ Key features include:
 - Scikit-learn – Train/test split, preprocessing, and evaluation metrics
 - Matplotlib, Seaborn – Data visualization
 - Jupyter Notebook / PyCharm – Development environment
+
+  ## How to Run
+1. Clone the repository:  
+```bash
+     git clone <your-repo-url>
+```
+2. Create and activate a virtual environment (Recommended):
+```bash
+     python -m venv venv
+```
+   - Linux/macOS:
+     ```bash
+          source venv/bin/activate
+     ```
+   - Windows:
+     ```bash
+          venv\Scripts\activate
+     ```
+3. Install dependencies:
+ ```bash
+      pip install <name of libraries>
+```
+3. Run the main Python script:
+ ```bash
+      python LoanDefaultPrediction.py
+```
+
