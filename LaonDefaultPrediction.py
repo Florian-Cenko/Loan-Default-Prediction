@@ -25,71 +25,71 @@ feat_info('mort_acc')
 df = pd.read_csv('lending_club_loan_two.csv')
 print(df.info())
 
-# # Project Tasks
-# # Section 1: Exploratory Data Analysis
-#
-# # 1) Since we will be attempting to predict loan_status, create a countplot
-# sns.countplot(data=df,x='loan_status',palette='rainbow')
-# plt.show()
-#
-# # 2) A histogram of the loan_amnt
-# plt.figure(figsize=(12,4))
-# sns.histplot(df['loan_amnt'],bins=40)
-# plt.show()
-#
-# # 3) Calculate correlation between all continuous numeric variables
-# dc = df.corr(numeric_only=True)
-# print(dc)
-#
-# # and visualize this using a heatmap: Ι noticed that we have almost perfect correlation with the installment feature
-# plt.figure(figsize=(12,7))
-# sns.heatmap(data=dc,annot=True,cmap='viridis')
-# plt.ylim(10,0)
-# plt.show()
-#
-# # 4) printing out their descriptions and perform a scatterplot between them.
-# feat_info('installment')
-# feat_info('loan_amnt')
-# sns.scatterplot(x='installment',y='loan_amnt',data=df)
-# plt.show()
-#
-# # 5) create a boxplot between loan_status and Loan Amount.
-# sns.boxplot(data=df,x='loan_status',y='loan_amnt',palette='rainbow')
-# plt.show()
-#
-# # 6) Calculate the summary statistics for the loan amount, grouped by the loan_status.
-# print(df.groupby('loan_status').describe())
-#
-# # 7) Let's explore the Grade and SubGrade columns that LendingClub attributes to the loans.
-# # What are the unique possible grades and subgrades?
-# print(sorted(df['grade'].unique()))
-# print("\n")
-# print(sorted(df['sub_grade'].unique()))
-#
-# # 8) Create a countplot per grade. Set the hue to the loan_status label
-# sns.countplot(data=df,x='grade',hue='loan_status')
-# plt.show()
-#
-# # 9) Display a count plot per subgrade. You may need to resize for this plot
-# # and [reorder](https://seaborn.pydata.org/generated/seaborn.countplot.html#seaborn.countplot) the x axis. Feel free to edit the color palette. Explore both all loans made per subgrade as well being separated based on the loan_status. After creating this plot,
-# # go ahead and create a similar plot, but set hue="loan_status"**
-# plt.figure(figsize=(12,4))
-# sorted_subs = sorted(df['sub_grade'].unique())
-# sns.countplot(data=df,x='sub_grade',order=sorted_subs,palette='rainbow')
-# plt.show()
-#
-# sns.countplot(data=df,x='sub_grade',order=sorted_subs,palette='rainbow',hue='loan_status')
-# plt.show()
-#
-# # 10) It looks like F and G subgrades don't get paid back that often. Isolate those and recreate the countplot just for those subgrades.**
-# plt.figure(figsize=(12,4))
-# f_g = df[(df['grade'] == 'G') | (df['grade'] == 'F')]
-# upgrade_order = sorted(f_g['sub_grade'].unique())
-# sns.countplot(data=f_g,x='sub_grade',palette='coolwarm',order=upgrade_order,hue='loan_status')
-# plt.show()
-#
-# # 11) Create a new column called 'loan_repaid' which will contain a 1 if the loan status was "Fully Paid" and a 0 if it was "Charged Off".
-#
+# Project Tasks
+# Section 1: Exploratory Data Analysis
+
+# 1) Since we will be attempting to predict loan_status, create a countplot
+sns.countplot(data=df,x='loan_status',palette='rainbow')
+plt.show()
+
+# 2) A histogram of the loan_amnt
+plt.figure(figsize=(12,4))
+sns.histplot(df['loan_amnt'],bins=40)
+plt.show()
+
+# 3) Calculate correlation between all continuous numeric variables
+dc = df.corr(numeric_only=True)
+print(dc)
+
+# and visualize this using a heatmap: Ι noticed that we have almost perfect correlation with the installment feature
+plt.figure(figsize=(12,7))
+sns.heatmap(data=dc,annot=True,cmap='viridis')
+plt.ylim(10,0)
+plt.show()
+
+# 4) printing out their descriptions and perform a scatterplot between them.
+feat_info('installment')
+feat_info('loan_amnt')
+sns.scatterplot(x='installment',y='loan_amnt',data=df)
+plt.show()
+
+# 5) create a boxplot between loan_status and Loan Amount.
+sns.boxplot(data=df,x='loan_status',y='loan_amnt',palette='rainbow')
+plt.show()
+
+# 6) Calculate the summary statistics for the loan amount, grouped by the loan_status.
+print(df.groupby('loan_status').describe())
+
+# 7) Let's explore the Grade and SubGrade columns that LendingClub attributes to the loans.
+# What are the unique possible grades and subgrades?
+print(sorted(df['grade'].unique()))
+print("\n")
+print(sorted(df['sub_grade'].unique()))
+
+# 8) Create a countplot per grade. Set the hue to the loan_status label
+sns.countplot(data=df,x='grade',hue='loan_status')
+plt.show()
+
+# 9) Display a count plot per subgrade. You may need to resize for this plot
+# and [reorder](https://seaborn.pydata.org/generated/seaborn.countplot.html#seaborn.countplot) the x axis. Feel free to edit the color palette. Explore both all loans made per subgrade as well being separated based on the loan_status. After creating this plot,
+# go ahead and create a similar plot, but set hue="loan_status"**
+plt.figure(figsize=(12,4))
+sorted_subs = sorted(df['sub_grade'].unique())
+sns.countplot(data=df,x='sub_grade',order=sorted_subs,palette='rainbow')
+plt.show()
+
+sns.countplot(data=df,x='sub_grade',order=sorted_subs,palette='rainbow',hue='loan_status')
+plt.show()
+
+# 10) It looks like F and G subgrades don't get paid back that often. Isolate those and recreate the countplot just for those subgrades.**
+plt.figure(figsize=(12,4))
+f_g = df[(df['grade'] == 'G') | (df['grade'] == 'F')]
+upgrade_order = sorted(f_g['sub_grade'].unique())
+sns.countplot(data=f_g,x='sub_grade',palette='coolwarm',order=upgrade_order,hue='loan_status')
+plt.show()
+
+# 11) Create a new column called 'loan_repaid' which will contain a 1 if the loan status was "Fully Paid" and a 0 if it was "Charged Off".
+
 def func(loan_status):
     if loan_status == 'Fully Paid':
         return 1
@@ -97,15 +97,15 @@ def func(loan_status):
         return 0
 
 df['loan_repaid'] = df['loan_status'].apply(func)
-#
-# # 12) CHALLENGE TASK: (Note this is hard, but can be done in one line!) Create a bar plot showing the correlation of the numeric features to the new loan_repaid column.
-# sns.barplot(x=df.corr(numeric_only=True)['loan_repaid'].values,
-#             y=df.corr(numeric_only=True)['loan_repaid'].index)
-# plt.show()
 
-# Section 2: Data PreProcessing
-# Section Goals: Remove or fill any missing data. Remove unnecessary or repetitive features.
-# Convert categorical string features to dummy variables.
+# 12) CHALLENGE TASK: (Note this is hard, but can be done in one line!) Create a bar plot showing the correlation of the numeric features to the new loan_repaid column.
+sns.barplot(x=df.corr(numeric_only=True)['loan_repaid'].values,
+            y=df.corr(numeric_only=True)['loan_repaid'].index)
+plt.show()
+
+Section 2: Data PreProcessing
+Section Goals: Remove or fill any missing data. Remove unnecessary or repetitive features.
+Convert categorical string features to dummy variables.
 
 # 1) What is the length of the dataframe?
 print(df.shape[0])
